@@ -37,7 +37,7 @@ platforms:
 apps:
   blanc:
     extensions: [ gnome ]
-    command: blanc/blanc --no-sandbox --disable-features=PowerInhibitor
+    command: blanc/blanc --no-sandbox
     plugs:
       - audio-record
       - audio-playback
