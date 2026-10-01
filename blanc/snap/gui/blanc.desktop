@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Blanc Browser
+Comment=Browse The Web
+Exec=blanc
+Icon=${SNAP}/meta/gui/icon.png
+Terminal=false
+Type=Application
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;application/rss+
+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handl
+er/ftp;x-scheme-handler/chrome;video/webm;application/pdf;
+StartupNotify=true
+StartupWMClass=blanc

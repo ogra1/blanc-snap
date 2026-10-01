@@ -1,0 +1,49 @@
+iname: blanc
+base: core24
+adopt-info: blanc
+summary: A minimal, open-source desktop browser built around one small Island.
+description: |
+  Blanc replaces the usual tab strip and toolbar with a floating command pill.
+  It keeps the current site, tab switching, navigation, search, and a live
+  blocker count close at hand, then expands when you need more.
+  
+    - A quieter interface: 
+      Island chrome, the Quick Switcher, tab groups, Quiet Tabs, Glance, 
+      and multiple windows without a permanent toolbar.
+
+    - Blocking built in:
+      ads and trackers are filtered at the network layer from bundled, 
+      hash-verified EasyList and EasyPrivacy snapshots.
+
+    - Private and local choices: 
+      private tabs use a separate in-memory session; local profiles, separate 
+      site data, history, Favorites, downloads, and remembered permissions.
+
+grade: stable
+confinement: strict
+
+apps:
+  blanc:
+    extensions: [ gnome ]
+    command: bin/npm start --prefix $SNAP/lib/node_modules/blanc
+    environment:
+      NODE_PATH: $SNAP/lib/node_modules/blanc
+    plugs:
+      - browser-support
+      - network
+
+parts:
+  blanc:
+    plugin: npm
+    source: https://github.com/bnfy/blanc.git
+    source-tag: v1.23.0
+    npm-include-node: true
+    npm-node-version: "node"
+    override-pull: |
+      craftctl default
+      craftctl set version=$(git describe --tags --abbrev=0 | cut -c 2-)
+    override-prime: |
+      craftctl default
+      sed -i 's/electron ./electron --no-sandbox ./' \
+        $CRAFT_PRIME/lib/node_modules/blanc/package.json
+
