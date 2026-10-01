@@ -49,8 +49,9 @@ parts:
     plugin: npm
     source: https://github.com/bnfy/blanc.git
     source-tag: v1.23.0
-    npm-include-node: true
-    npm-node-version: "node"
+    npm-include-node: false
+    build-snaps:
+      - node
     override-pull: |
       craftctl default
       craftctl set version=$(git describe --tags --abbrev=0 | cut -c 2-)
