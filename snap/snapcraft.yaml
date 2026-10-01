@@ -37,13 +37,14 @@ platforms:
 apps:
   blanc:
     extensions: [ gnome ]
-    command: blanc/blanc --no-sandbox
+    command: blanc/blanc --no-sandbox --disable-features=PowerInhibitor
     plugs:
       - audio-record
       - audio-playback
       - browser-support
       - camera
       - network
+      - screen-inhibit-control
 
 parts:
   blanc:
@@ -68,4 +69,4 @@ parts:
       npm run brand:build
       npm run dist:dir
       ls -lah dist/
-      cp -a dist/linux-unpacked $CRAFT_PART_INSTALL/blanc
+      cp -a dist/linux-*unpacked $CRAFT_PART_INSTALL/blanc
