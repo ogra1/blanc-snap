@@ -37,21 +37,21 @@ platforms:
 apps:
   blanc:
     extensions: [ gnome ]
-    command: bin/npm start --prefix $SNAP/lib/node_modules/blanc
-    environment:
-      NODE_PATH: $SNAP/lib/node_modules/blanc
+    command: blanc/blanc --no-sandbox
     plugs:
+      - audio-record
+      - audio-playback
       - browser-support
+      - camera
       - network
 
 parts:
   blanc:
-    plugin: npm
+    plugin: nil
     source: https://github.com/bnfy/blanc.git
     source-tag: v1.23.0
-    npm-include-node: false
     build-snaps:
-      - node
+      - node/26/stable
     override-pull: |
       craftctl default
       craftctl set version=$(git describe --tags --abbrev=0 | cut -c 2-)
@@ -63,12 +63,8 @@ parts:
         export ELECTRON_GET_USE_PROXY=1
         export GLOBAL_AGENT_HTTP_PROXY="${http_proxy}"
         export GLOBAL_AGENT_HTTPS_PROXY="${http_proxy}"
-        export HTTP_PROXY="${http_proxy}"
-        export HTTPS_PROXY="${http_proxy}"
       fi
-      craftctl default
-    override-prime: |
-      craftctl default
-      sed -i 's/electron ./electron --no-sandbox ./' \
-        $CRAFT_PRIME/lib/node_modules/blanc/package.json
-
+      npm install
+      npm run brand:build
+      npm run dist:dir
+      cp -a dist/linux-unpacked $CRAFT_PART_INSTALL/blanc
