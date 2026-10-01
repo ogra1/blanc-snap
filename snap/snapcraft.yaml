@@ -68,5 +68,4 @@ parts:
       npm install
       npm run brand:build
       npm run dist:dir
-      ls -lah dist/
       cp -a dist/linux-*unpacked $CRAFT_PART_INSTALL/blanc
