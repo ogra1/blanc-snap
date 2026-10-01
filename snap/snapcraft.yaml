@@ -62,6 +62,8 @@ parts:
         export ELECTRON_GET_USE_PROXY=1
         export GLOBAL_AGENT_HTTP_PROXY="${http_proxy}"
         export GLOBAL_AGENT_HTTPS_PROXY="${http_proxy}"
+        export HTTP_PROXY="${http_proxy}
+        export HTTPS_PROXY="${http_proxy}"
       fi
       craftctl default
     override-prime: |
