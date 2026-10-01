@@ -29,6 +29,11 @@ website: https://github.com/ogra1/blanc-snap
 grade: stable
 confinement: strict
 
+platforms:
+  amd64:
+  arm64:
+  riscv64:
+
 apps:
   blanc:
     extensions: [ gnome ]
