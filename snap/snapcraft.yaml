@@ -32,7 +32,6 @@ confinement: strict
 platforms:
   amd64:
   arm64:
-  riscv64:
 
 apps:
   blanc:
