@@ -50,7 +50,7 @@ parts:
   blanc:
     plugin: nil
     source: https://github.com/bnfy/blanc.git
-    source-tag: v1.23.0
+    source-tag: v1.25.0
     build-snaps:
       - node/26/stable
     override-pull: |
